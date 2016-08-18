@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TelemetryActionFilter.cs" />
+    <Compile Include="TrackRequestsFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TelemetryExceptionFilter.cs" />
     <Compile Include="TelemetryHelper.cs" />
