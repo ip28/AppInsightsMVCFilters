@@ -5,3 +5,4 @@
 /AppInsightsMVCFilters/AppInsightsMVCFilters/bin/Release
 /AppInsightsMVCFilters/AppInsightsMVCFilters/obj/Release
 /AppInsightsMVCFilters/packages
+*.suo
