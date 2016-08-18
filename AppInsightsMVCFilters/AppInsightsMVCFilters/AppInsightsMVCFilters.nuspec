@@ -1,18 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <id>AppInsightsMVCFilters</id>
+    <version>1.2.2</version>
+    <title>AppInsightsMVCFilters</title>
+    <authors>Indranil Pal</authors>
+    <owners>Indranil Pal</owners>
+    <licenseUrl>https://github.com/ip28/AppInsightsMVCFilters/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ip28/AppInsightsMVCFilters</projectUrl>
+    <iconUrl>https://snaplogic-h.s3.amazonaws.com/uploads/snap/image/30/filter.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>MVC filters for Application Insights integration</description>
+    <releaseNotes>License Updated</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>Tag1 Tag2</tags>
   </metadata>
 </package>
