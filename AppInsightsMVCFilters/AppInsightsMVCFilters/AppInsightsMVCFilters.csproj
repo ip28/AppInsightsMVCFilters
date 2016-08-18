@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="TrackRequestsFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TelemetryExceptionFilter.cs" />
+    <Compile Include="TrackExceptionFilter.cs" />
     <Compile Include="TelemetryHelper.cs" />
   </ItemGroup>
   <ItemGroup>
