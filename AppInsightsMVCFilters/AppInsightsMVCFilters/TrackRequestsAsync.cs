@@ -6,16 +6,16 @@ using System.Web.Http.Filters;
 namespace AppInsightsMVCFilters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class TrackRequestsFilterAsync : ActionFilterAttribute
+    public class TrackRequestsAsync : ActionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
         private string _methodName;
 
-        public TrackRequestsFilterAsync()
+        public TrackRequestsAsync()
         {
 
         }
-        public TrackRequestsFilterAsync(string methodName)
+        public TrackRequestsAsync(string methodName)
         {
             _methodName = methodName;
         }

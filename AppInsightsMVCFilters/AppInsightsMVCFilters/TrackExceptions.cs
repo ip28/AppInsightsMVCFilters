@@ -2,15 +2,15 @@
 
 namespace AppInsightsMVCFilters
 {
-    public class TrackExceptionFilter : ExceptionFilterAttribute
+    public class TrackExceptions : ExceptionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
         private string _methodName;
 
-        public TrackExceptionFilter()
+        public TrackExceptions()
         {
         }
-        public TrackExceptionFilter(string methodName)
+        public TrackExceptions(string methodName)
         {
             _methodName = methodName;
         }

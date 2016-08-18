@@ -5,16 +5,16 @@ using System.Web.Http.Filters;
 namespace AppInsightsMVCFilters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class TrackRequestsFilter : ActionFilterAttribute
+    public class TrackRequests : ActionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
         private string _methodName;
 
-        public TrackRequestsFilter()
+        public TrackRequests()
         {
 
         }
-        public TrackRequestsFilter(string methodName)
+        public TrackRequests(string methodName)
         {
             _methodName = methodName;
         }

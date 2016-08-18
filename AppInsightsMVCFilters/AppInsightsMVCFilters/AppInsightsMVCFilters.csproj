@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TrackExceptionFilterAsync.cs" />
-    <Compile Include="TrackRequestsFilterAsync.cs" />
-    <Compile Include="TrackRequestsFilter.cs" />
+    <Compile Include="TrackExceptions.cs" />
+    <Compile Include="TrackRequestsAsync.cs" />
+    <Compile Include="TrackRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackExceptionFilter.cs" />
+    <Compile Include="TrackExceptionsAsync.cs" />
     <Compile Include="TelemetryHelper.cs" />
   </ItemGroup>
   <ItemGroup>

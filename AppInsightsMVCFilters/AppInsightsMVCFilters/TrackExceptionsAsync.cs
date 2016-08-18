@@ -3,15 +3,15 @@ using System.Web.Http.Filters;
 
 namespace AppInsightsMVCFilters
 {
-    public class TrackExceptionFilterAsync : ExceptionFilterAttribute
+    public class TrackExceptionsAsync : ExceptionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
         private string _methodName;
 
-        public TrackExceptionFilterAsync()
+        public TrackExceptionsAsync()
         {
         }
-        public TrackExceptionFilterAsync(string methodName)
+        public TrackExceptionsAsync(string methodName)
         {
             _methodName = methodName;
         }
