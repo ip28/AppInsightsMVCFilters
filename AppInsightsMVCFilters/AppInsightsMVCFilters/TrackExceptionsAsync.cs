@@ -3,6 +3,9 @@ using System.Web.Http.Filters;
 
 namespace AppInsightsMVCFilters
 {
+    /// <summary>
+    /// Async track exception (beta feature)
+    /// </summary>
     public class TrackExceptionsAsync : ExceptionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();

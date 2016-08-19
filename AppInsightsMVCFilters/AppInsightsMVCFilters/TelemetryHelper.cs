@@ -25,11 +25,6 @@ namespace AppInsightsMVCFilters
             _stopwatch = Stopwatch.StartNew();
         }
 
-        public void TrackRequest()
-        {
-            TelemetryClient.TrackRequest(_telemetry);
-        }
-
         public void TrackRequest(string httpStatusCode, string methodName, bool isCallSuccess)
         {
             _stopwatch.Stop();

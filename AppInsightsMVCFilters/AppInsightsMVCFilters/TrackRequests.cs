@@ -9,14 +9,14 @@ namespace AppInsightsMVCFilters
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
         private string _methodName;
-
+        private string _exceptionMethodName;
         public TrackRequests()
         {
-
         }
         public TrackRequests(string methodName)
         {
             _methodName = methodName;
+            _exceptionMethodName = $"OnActionExecuted of method- {_methodName}";
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -25,10 +25,22 @@ namespace AppInsightsMVCFilters
         }
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            _methodName = !string.IsNullOrWhiteSpace(_methodName)
-                  ? _methodName
-                  : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName;
-            _telemetryHelper.TrackRequest();
+            try
+            {
+                _methodName = !string.IsNullOrWhiteSpace(_methodName)
+                        ? _methodName
+                        : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName;
+                var httpStatusCode = (Convert.ToInt32(actionExecutedContext.Response.StatusCode)).ToString();
+                var isCallSuccess = actionExecutedContext.Response.IsSuccessStatusCode;
+                _telemetryHelper.TrackRequest(httpStatusCode, _methodName, isCallSuccess);
+            }
+            catch (Exception ex)
+            {
+                _exceptionMethodName = !string.IsNullOrWhiteSpace(_exceptionMethodName)
+                    ? _exceptionMethodName
+                    : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName; 
+                _telemetryHelper.TrackException(ex,_exceptionMethodName);
+            }
         }
 
     }

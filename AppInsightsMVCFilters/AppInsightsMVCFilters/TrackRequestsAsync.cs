@@ -5,6 +5,9 @@ using System.Web.Http.Filters;
 
 namespace AppInsightsMVCFilters
 {
+    /// <summary>
+    /// Async Track requests (beta feature)
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class TrackRequestsAsync : ActionFilterAttribute
     {
@@ -29,7 +32,9 @@ namespace AppInsightsMVCFilters
             _methodName = !string.IsNullOrWhiteSpace(_methodName)
                   ? _methodName
                   : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName;
-            Task.Factory.StartNew(() => _telemetryHelper.TrackRequest());
+            var httpStatusCode = (Convert.ToInt32(actionExecutedContext.Response.StatusCode)).ToString();
+            var isCallSuccess = actionExecutedContext.Response.IsSuccessStatusCode;
+            Task.Factory.StartNew(()=>_telemetryHelper.TrackRequest(httpStatusCode, _methodName, isCallSuccess));
         }
 
     }
