@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
@@ -8,8 +9,10 @@ namespace AppInsightsMVCFilters
     public class TrackRequests : ActionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
+        private readonly bool _logPayload = false;
         private string _methodName;
         private string _exceptionMethodName;
+
         public TrackRequests()
         {
         }
@@ -19,9 +22,34 @@ namespace AppInsightsMVCFilters
             _exceptionMethodName = $"OnActionExecuted of method- {_methodName}";
         }
 
+        public TrackRequests(bool logPayload)
+        {
+            _logPayload = logPayload;
+        }
+
+        public TrackRequests(string methodName,bool logPayload)
+        {
+            _logPayload = logPayload;
+            _methodName = methodName;
+        }
+
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            _telemetryHelper.Start(_methodName);
+            try
+            {
+                _telemetryHelper.Start(_methodName);
+                if (_logPayload)
+                {
+                    _telemetryHelper.LogPayload(actionContext.Request.Content, "Request");
+                }
+            }
+            catch (Exception ex)
+            {
+                _exceptionMethodName = !string.IsNullOrWhiteSpace(_exceptionMethodName)
+                    ? _exceptionMethodName
+                    : actionContext?.ActionDescriptor?.ActionName;
+                _telemetryHelper.TrackException(ex, _exceptionMethodName);
+            }
         }
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
@@ -33,6 +61,10 @@ namespace AppInsightsMVCFilters
                 var httpStatusCode = (Convert.ToInt32(actionExecutedContext.Response.StatusCode)).ToString();
                 var isCallSuccess = actionExecutedContext.Response.IsSuccessStatusCode;
                 _telemetryHelper.TrackRequest(httpStatusCode, _methodName, isCallSuccess);
+                if (_logPayload)
+                {
+                    _telemetryHelper.LogPayload(actionExecutedContext.Response.Content,"Response");
+                }
             }
             catch (Exception ex)
             {
