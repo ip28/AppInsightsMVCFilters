@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppInsightsMVCFilters", "AppInsightsMVCFilters\AppInsightsMVCFilters.csproj", "{CB519202-F605-423D-A046-1304EA89B898}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIIntegrationTests", "WebAPIIntegrationTests\WebAPIIntegrationTests.csproj", "{56B7A649-4658-4640-A28E-1F348374F75C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppInsightsMVCFiltersTests", "AppInsightsMVCFiltersTests\AppInsightsMVCFiltersTests.csproj", "{90FAC69B-B4C2-4084-BE21-6C43E78C6EB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3EF27B9B-0DF0-46D4-8E2C-4396F302D8F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +21,20 @@ Global
 		{CB519202-F605-423D-A046-1304EA89B898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB519202-F605-423D-A046-1304EA89B898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB519202-F605-423D-A046-1304EA89B898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56B7A649-4658-4640-A28E-1F348374F75C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56B7A649-4658-4640-A28E-1F348374F75C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56B7A649-4658-4640-A28E-1F348374F75C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56B7A649-4658-4640-A28E-1F348374F75C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90FAC69B-B4C2-4084-BE21-6C43E78C6EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FAC69B-B4C2-4084-BE21-6C43E78C6EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FAC69B-B4C2-4084-BE21-6C43E78C6EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FAC69B-B4C2-4084-BE21-6C43E78C6EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56B7A649-4658-4640-A28E-1F348374F75C} = {3EF27B9B-0DF0-46D4-8E2C-4396F302D8F6}
+		{90FAC69B-B4C2-4084-BE21-6C43E78C6EB4} = {3EF27B9B-0DF0-46D4-8E2C-4396F302D8F6}
 	EndGlobalSection
 EndGlobal

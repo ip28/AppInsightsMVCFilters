@@ -50,5 +50,10 @@ namespace AppInsightsMVCFilters
             TelemetryClient.TrackException(ex, new Dictionary<string, string>() { { "MethodName", methodName }, { "StackTrace", ex.StackTrace }, { "InnerException", ex.InnerException?.ToString() } });
         }
 
+        public void TrackRequestUri(string eventName,string url )
+        {
+            TelemetryClient.TrackEvent(eventName,new Dictionary<string, string>() { {"url",url} });
+        }
+
     }
 }

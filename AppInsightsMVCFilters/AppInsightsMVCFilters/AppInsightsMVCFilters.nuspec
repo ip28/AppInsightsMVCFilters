@@ -5,8 +5,7 @@
     <version>1.2.7</version>
     <title>AppInsightsMVCFilters</title>
     <authors>Indranil Pal</authors>
-    <owners>Indranil Pal</owners>
-    <licenseUrl>https://github.com/ip28/AppInsightsMVCFilters/blob/master/LICENSE</licenseUrl>
+    <owners>Indranil Pal</owners>    
     <projectUrl>https://github.com/ip28/AppInsightsMVCFilters</projectUrl>
     <iconUrl>https://snaplogic-h.s3.amazonaws.com/uploads/snap/image/30/filter.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

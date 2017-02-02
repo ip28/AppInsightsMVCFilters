@@ -9,7 +9,7 @@ namespace AppInsightsMVCFilters
     public class TrackRequests : ActionFilterAttribute
     {
         readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
-        private readonly bool _logPayload = false;
+        private readonly bool _logPayload = GlobalConfiguration.Instance.LogPayload;
         private string _methodName;
         private string _exceptionMethodName;
 
@@ -21,25 +21,18 @@ namespace AppInsightsMVCFilters
             _methodName = methodName;
             _exceptionMethodName = $"OnActionExecuted of method- {_methodName}";
         }
-
-        public TrackRequests(bool logPayload)
-        {
-            _logPayload = logPayload;
-        }
-
-        public TrackRequests(string methodName,bool logPayload)
-        {
-            _logPayload = logPayload;
-            _methodName = methodName;
-        }
+      
 
         public override void OnActionExecuting(HttpActionContext actionContext)
+
         {
             try
             {
                 _telemetryHelper.Start(_methodName);
                 if (_logPayload)
                 {
+                    var url = actionContext.RequestContext.Url.Request.RequestUri.AbsoluteUri;
+                    //_telemetryHelper.TrackRequestUri("Request",actionContext.RequestContext.Url);
                     _telemetryHelper.LogPayload(actionContext.Request.Content, "Request");
                 }
             }
