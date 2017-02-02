@@ -7,3 +7,9 @@
 /AppInsightsMVCFilters/packages
 *.suo
 /AppInsightsMVCFilters/AppInsightsMVCFilters/obj/Debug
+/AppInsightsMVCFilters/AppInsightsMVCFilters/bin/Debug
+/AppInsightsMVCFilters/AppInsightsMVCFiltersTests/obj/Debug
+/AppInsightsMVCFilters/.vs/config/applicationhost.config
+/AppInsightsMVCFilters/IntegrationTests/bin
+/AppInsightsMVCFilters/IntegrationTests/obj/Release
+/AppInsightsMVCFilters/WebAPIIntegrationTests/bin
