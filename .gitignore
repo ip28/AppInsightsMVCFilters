@@ -6,3 +6,11 @@
 /AppInsightsMVCFilters/AppInsightsMVCFilters/obj/Release
 /AppInsightsMVCFilters/packages
 *.suo
+/AppInsightsMVCFilters/AppInsightsMVCFilters/bin/Debug
+/AppInsightsMVCFilters/AppInsightsMVCFilters/obj/Debug
+/AppInsightsMVCFilters/AppInsightsMVCFiltersTests/obj/Debug
+/AppInsightsMVCFilters/WebAPIIntegrationTests/bin
+*.user
+/AppInsightsMVCFilters/.vs/config
+/AppInsightsMVCFilters/IntegrationTests/bin
+/AppInsightsMVCFilters/IntegrationTests/obj/Release
