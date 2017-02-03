@@ -10,7 +10,7 @@ namespace WebAPIIntegrationTests.Controllers
 {
     public class WebApiController : ApiController
     {
-        [TrackRequests]
+        [TrackRequests("GETAction")]
         public int Get(int id)
         {
             return id;

@@ -13,3 +13,6 @@
 /AppInsightsMVCFilters/IntegrationTests/bin
 /AppInsightsMVCFilters/IntegrationTests/obj/Release
 /AppInsightsMVCFilters/WebAPIIntegrationTests/bin
+/AppInsightsMVCFilters/AppInsightsMVCFilters/bin
+/AppInsightsMVCFilters/AppInsightsMVCFiltersTests/bin
+/AppInsightsMVCFilters/AppInsightsMVCFiltersTests/obj/Release
