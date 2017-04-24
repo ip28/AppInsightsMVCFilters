@@ -8,18 +8,18 @@ namespace AppInsightsMVCFilters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class TrackRequests : ActionFilterAttribute
     {
-        readonly TelemetryHelper _telemetryHelper = new TelemetryHelper();
-        private readonly bool _logPayload = GlobalConfiguration.Instance.LogPayload;
-        private string _methodName;
-        private string _exceptionMethodName;
+        protected readonly TelemetryHelper TelemetryHelper = new TelemetryHelper();
+        protected readonly bool LogPayload = GlobalConfiguration.Instance.LogPayload;
+        protected string MethodName;
+        protected string ExceptionMethodName;
 
         public TrackRequests()
         {
         }
         public TrackRequests(string methodName)
         {
-            _methodName = methodName;
-            _exceptionMethodName = $"OnActionExecuted of method- {_methodName}";
+            MethodName = methodName;
+            ExceptionMethodName = $"OnActionExecuted of method- {MethodName}";
         }
       
 
@@ -28,46 +28,55 @@ namespace AppInsightsMVCFilters
         {
             try
             {
-                _telemetryHelper.Start(_methodName);
-                if (_logPayload)
+                TelemetryHelper.Start(MethodName);
+                if (LogPayload)
                 {
                     var url = actionContext.RequestContext.Url.Request.RequestUri.AbsoluteUri;
-                    //_telemetryHelper.TrackRequestUri("Request",actionContext.RequestContext.Url);
-                    _telemetryHelper.LogPayload(actionContext.Request.Content, "Request");
+                    TelemetryHelper.TrackRequestUri("Request",url);
                 }
             }
             catch (Exception ex)
             {
-                _exceptionMethodName = !string.IsNullOrWhiteSpace(_exceptionMethodName)
-                    ? _exceptionMethodName
-                    : actionContext?.ActionDescriptor?.ActionName;
-                _telemetryHelper.TrackException(ex, _exceptionMethodName);
+                LogRequestException(actionContext, ex);
             }
         }
+
+        protected void LogRequestException(HttpActionContext actionContext, Exception ex)
+        {
+            ExceptionMethodName = !string.IsNullOrWhiteSpace(ExceptionMethodName)
+                ? ExceptionMethodName
+                : actionContext?.ActionDescriptor?.ActionName;
+            TelemetryHelper.TrackException(ex, ExceptionMethodName);
+        }
+
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
             try
             {
-                _methodName = !string.IsNullOrWhiteSpace(_methodName)
-                        ? _methodName
+                MethodName = !string.IsNullOrWhiteSpace(MethodName)
+                        ? MethodName
                         : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName;
                 var httpStatusCode = (Convert.ToInt32(actionExecutedContext.Response.StatusCode)).ToString();
                 var isCallSuccess = actionExecutedContext.Response.IsSuccessStatusCode;
-                _telemetryHelper.TrackRequest(httpStatusCode, _methodName, isCallSuccess);
-                if (_logPayload)
+                TelemetryHelper.TrackRequest(httpStatusCode, MethodName, isCallSuccess);
+                if (LogPayload)
                 {
-                    _telemetryHelper.LogPayload(actionExecutedContext.Response.Content,"Response");
+                    TelemetryHelper.LogPayload(actionExecutedContext.Response.Content,"Response");
                 }
             }
             catch (Exception ex)
             {
-                _exceptionMethodName = !string.IsNullOrWhiteSpace(_exceptionMethodName)
-                    ? _exceptionMethodName
-                    : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName; 
-                _telemetryHelper.TrackException(ex,_exceptionMethodName);
+                LogResponseException(actionExecutedContext, ex);
             }
         }
 
+        protected void LogResponseException(HttpActionExecutedContext actionExecutedContext, Exception ex)
+        {
+            ExceptionMethodName = !string.IsNullOrWhiteSpace(ExceptionMethodName)
+                ? ExceptionMethodName
+                : actionExecutedContext?.ActionContext?.ActionDescriptor?.ActionName;
+            TelemetryHelper.TrackException(ex, ExceptionMethodName);
+        }
     }
 
 
