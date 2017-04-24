@@ -33,7 +33,7 @@ namespace AppInsightsMVCFilters
             TelemetryClient.TrackRequest(methodName, DateTimeOffset.UtcNow, _stopwatch.Elapsed, httpStatusCode, isCallSuccess);
         }
 
-        public void LogPayload(HttpContent content, string eventName)
+        public void LogPayload(HttpContent content, string eventName,Dictionary<string,string> customAttributes=null)
         {
             if (content != null)
             {
@@ -41,7 +41,10 @@ namespace AppInsightsMVCFilters
                 var payload = objectContent?.Value;
                 var objectType = objectContent?.ObjectType;
                 var payloadJson =JsonConvert.SerializeObject(payload);
-                TelemetryClient.TrackEvent(eventName, new Dictionary<string, string>() { { "type", objectType?.ToString() },{ eventName, payloadJson} });
+                customAttributes = customAttributes ?? new Dictionary<string, string>();
+                customAttributes.Add("type", objectType?.ToString());
+                customAttributes.Add(eventName, payloadJson);
+                TelemetryClient.TrackEvent(eventName,customAttributes);
             }
         }
 
@@ -50,9 +53,11 @@ namespace AppInsightsMVCFilters
             TelemetryClient.TrackException(ex, new Dictionary<string, string>() { { "MethodName", methodName }, { "StackTrace", ex.StackTrace }, { "InnerException", ex.InnerException?.ToString() } });
         }
 
-        public void TrackRequestUri(string eventName,string url )
+        public void TrackRequestUri(string eventName,string url, Dictionary<string,string> customAttributes = null )
         {
-            TelemetryClient.TrackEvent(eventName,new Dictionary<string, string>() { {"url",url} });
+            customAttributes = customAttributes ?? new Dictionary<string, string>();
+            customAttributes.Add("url", url);
+            TelemetryClient.TrackEvent(eventName,customAttributes);
         }
 
     }

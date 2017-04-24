@@ -54,3 +54,5 @@ E:\GitHubRepo\AppInsightsMVCFilters\AppInsightsMVCFilters\WebAPIIntegrationTests
 E:\GitHubRepo\AppInsightsMVCFilters\AppInsightsMVCFilters\WebAPIIntegrationTests\obj\Debug\WebAPIIntegrationTests.csprojResolveAssemblyReference.cache
 E:\GitHubRepo\AppInsightsMVCFilters\AppInsightsMVCFilters\WebAPIIntegrationTests\obj\Debug\WebAPIIntegrationTests.dll
 E:\GitHubRepo\AppInsightsMVCFilters\AppInsightsMVCFilters\WebAPIIntegrationTests\obj\Debug\WebAPIIntegrationTests.pdb
+E:\GitHubRepo\AppInsightsMVCFilters\AppInsightsMVCFilters\WebAPIIntegrationTests\bin\Microsoft.ApplicationInsights.TraceListener.dll
+E:\GitHubRepo\AppInsightsMVCFilters\AppInsightsMVCFilters\WebAPIIntegrationTests\bin\Microsoft.ApplicationInsights.TraceListener.xml
